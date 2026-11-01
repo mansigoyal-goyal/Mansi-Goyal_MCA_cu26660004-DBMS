@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Update Stock</h2>
+{% if msg %}<div class="msg {{ 'success' if ok else 'error' }}">{{ msg }}</div>{% endif %}
+<form method="post">
+  <label>Medicine ID</label><input type="number" name="medicine_id" required>
+  <label>New Stock</label><input type="number" name="new_stock" min="0" required>
+  <button type="submit">Update Stock</button>
+</form>
+{% if medicine %}
+<h3>Updated Information</h3>
+<div class="card">
+  <p><b>Medicine ID:</b> {{ medicine.medicine_id }}</p>
+  <p><b>Name:</b> {{ medicine.name }}</p>
+  <p><b>Category:</b> {{ medicine.category }}</p>
+  <p><b>Price:</b> &#8377;{{ medicine.price }}</p>
+  <p><b>Stock:</b> {{ medicine.stock }}</p>
+  <p><b>Manufacturer:</b> {{ medicine.manufacturer }}</p>
+</div>
+{% endif %}
+{% endblock %}

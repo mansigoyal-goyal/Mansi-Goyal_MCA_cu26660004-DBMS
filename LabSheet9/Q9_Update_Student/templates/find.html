@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Update Student</h2>
+{% if msg %}<div class="msg error">{{ msg }}</div>{% endif %}
+<form method="post">
+  <label>Enter Student ID to update</label>
+  <input type="text" name="student_id" required>
+  <button type="submit">Find Student</button>
+</form>
+{% endblock %}

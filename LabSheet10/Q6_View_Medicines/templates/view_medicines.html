@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block cls %}wide{% endblock %}
+{% block content %}
+<h2>All Medicines ({{ medicines|length }})</h2>
+{% if medicines %}
+<table>
+  <tr><th>Medicine ID</th><th>Medicine Name</th><th>Category</th><th>Price (&#8377;)</th><th>Stock</th><th>Manufacturer</th></tr>
+  {% for m in medicines %}
+  <tr>
+    <td>{{ m.medicine_id }}</td><td>{{ m.name }}</td><td>{{ m.category }}</td>
+    <td>{{ m.price }}</td><td>{{ m.stock }}</td><td>{{ m.manufacturer }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}<div class="msg info">No medicine records found.</div>{% endif %}
+{% endblock %}

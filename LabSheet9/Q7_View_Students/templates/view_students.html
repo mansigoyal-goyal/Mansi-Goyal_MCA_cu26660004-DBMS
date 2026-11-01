@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block cls %}wide{% endblock %}
+{% block content %}
+<h2>All Students ({{ students|length }})</h2>
+{% if students %}
+<table>
+  <tr><th>Student ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Department</th><th>Marks</th></tr>
+  {% for s in students %}
+  <tr><td>{{ s.student_id }}</td><td>{{ s.name }}</td><td>{{ s.age }}</td><td>{{ s.gender }}</td><td>{{ s.department }}</td><td>{{ s.marks }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}<div class="msg info">No student records found.</div>{% endif %}
+{% endblock %}

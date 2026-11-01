@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Delete Medicine</h2>
+{% if msg %}<div class="msg {{ 'success' if ok else 'error' }}">{{ msg }}</div>{% endif %}
+{% if verified %}<div class="msg info">{{ verified }}</div>{% endif %}
+<form method="post" onsubmit="return confirm('Are you sure you want to delete this medicine?');">
+  <label>Medicine ID</label>
+  <input type="number" name="medicine_id" required>
+  <button type="submit" class="btn-danger">Delete</button>
+</form>
+<p>Total medicines remaining: <b>{{ total }}</b></p>
+{% endblock %}

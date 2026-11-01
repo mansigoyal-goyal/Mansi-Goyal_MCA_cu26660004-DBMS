@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block cls %}wide{% endblock %}
+{% block content %}
+<h2>MongoDB Query Practice</h2>
+
+<div class="inline-form"><form action="/category" method="get">
+  <label>(a) Medicines in a category</label><input type="text" name="category" placeholder="e.g. Antibiotic" required>
+  <button type="submit" class="btn-sm">Show</button></form></div>
+
+<div class="inline-form"><label>(b), (c), (d) Quick filters</label>
+  <div class="pills"><a href="/price-above-50">(b) Price &gt; &#8377;50</a><a href="/price-below-100">(c) Price &lt; &#8377;100</a><a href="/stock-below-30">(d) Stock &lt; 30</a></div></div>
+
+<div class="inline-form"><form action="/manufacturer" method="get">
+  <label>(e) Medicines by manufacturer</label><input type="text" name="manufacturer" placeholder="e.g. ABC Pharma" required>
+  <button type="submit" class="btn-sm">Show</button></form></div>
+
+<div class="inline-form"><label>(f), (g) Sorting</label>
+  <div class="pills">
+    <a href="/sort-price?order=asc">(f) Price: low &rarr; high</a><a href="/sort-price?order=desc">(f) Price: high &rarr; low</a>
+    <a href="/sort-stock?order=asc">(g) Stock: low &rarr; high</a><a href="/sort-stock?order=desc">(g) Stock: high &rarr; low</a>
+  </div></div>
+
+{% if title %}
+<h2>{{ title }}</h2>
+<div class="card"><b>MongoDB query:</b> <code>{{ query_text }}</code></div>
+{% if results %}
+<table>
+  <tr><th>Medicine ID</th><th>Name</th><th>Category</th><th>Price (&#8377;)</th><th>Stock</th><th>Manufacturer</th></tr>
+  {% for m in results %}
+  <tr><td>{{ m.medicine_id }}</td><td>{{ m.name }}</td><td>{{ m.category }}</td><td>{{ m.price }}</td><td>{{ m.stock }}</td><td>{{ m.manufacturer }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}<div class="msg info">No matching medicines.</div>{% endif %}
+{% endif %}
+{% endblock %}

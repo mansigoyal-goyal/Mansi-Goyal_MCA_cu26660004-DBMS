@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block cls %}wide{% endblock %}
+{% block content %}
+<h2>Medicine Inventory Report</h2>
+<div class="stats">
+  <div class="stat"><div class="num">{{ total_medicines }}</div><div class="lbl">Total number of medicines</div></div>
+  <div class="stat"><div class="num">{{ total_stock }}</div><div class="lbl">Total stock (units)</div></div>
+  <div class="stat"><div class="num">{{ low_stock|length }}</div><div class="lbl">Medicines with low stock (&lt; {{ limit }})</div></div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="lbl">Most expensive medicine</div>
+    {% if most_expensive %}<div class="num">{{ most_expensive.name }}</div><div>&#8377;{{ most_expensive.price }} &middot; {{ most_expensive.category }}</div>{% else %}-{% endif %}</div>
+  <div class="stat"><div class="lbl">Cheapest medicine</div>
+    {% if cheapest %}<div class="num">{{ cheapest.name }}</div><div>&#8377;{{ cheapest.price }} &middot; {{ cheapest.category }}</div>{% else %}-{% endif %}</div>
+</div>
+
+<h3>Low Stock Medicines</h3>
+{% if low_stock %}
+<table>
+  <tr><th>Medicine ID</th><th>Name</th><th>Category</th><th>Price (&#8377;)</th><th>Stock</th><th>Manufacturer</th></tr>
+  {% for m in low_stock %}
+  <tr class="low"><td>{{ m.medicine_id }}</td><td>{{ m.name }}</td><td>{{ m.category }}</td><td>{{ m.price }}</td><td>{{ m.stock }}</td><td>{{ m.manufacturer }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}<div class="msg success">No medicines are low on stock.</div>{% endif %}
+{% endblock %}

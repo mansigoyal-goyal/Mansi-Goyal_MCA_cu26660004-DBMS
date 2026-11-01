@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Home</h2>
+<div class="msg info">Connected to MongoDB &mdash; HospitalDB.medicines has <b>{{ total }}</b> medicines, <b>{{ low }}</b> with low stock.</div>
+<div class="grid">
+  <a href="/add">Add Medicine</a><a href="/medicines">View Medicines</a>
+  <a href="/search">Search Medicine</a><a href="/update-stock">Update Stock</a>
+  <a href="/delete">Delete Medicine</a><a href="/low-stock">Low Stock</a>
+  <a href="/report">Inventory Report</a>
+</div>
+{% endblock %}

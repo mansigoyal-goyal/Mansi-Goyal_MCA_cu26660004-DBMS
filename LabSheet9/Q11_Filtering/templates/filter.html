@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block cls %}wide{% endblock %}
+{% block content %}
+<h2>Filter Students</h2>
+<div class="inline-form">
+  <form action="/department" method="get">
+    <label>(a) Department</label>
+    <input type="text" name="department" placeholder="e.g. MCA" required>
+    <button type="submit">Show</button>
+  </form>
+</div>
+<div class="inline-form">
+  <label>(b) Marks greater than 75</label>
+  <a class="btn" href="/marks-above-75">Show</a>
+</div>
+<div class="inline-form">
+  <form action="/marks-between" method="get">
+    <label>(c) Marks between</label>
+    <input type="number" name="low" value="50" step="0.01" required>
+    <input type="number" name="high" value="80" step="0.01" required style="margin-top:8px">
+    <button type="submit">Show</button>
+  </form>
+</div>
+<div class="inline-form">
+  <label>(d) Students older than 20</label>
+  <a class="btn" href="/age-above-20">Show</a>
+</div>
+
+{% if title %}
+<h2>{{ title }}</h2>
+<div class="card"><b>MongoDB query:</b> db.students.find({{ query }})</div>
+{% if results %}
+<table>
+  <tr><th>Student ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Department</th><th>Marks</th></tr>
+  {% for s in results %}
+  <tr><td>{{ s.student_id }}</td><td>{{ s.name }}</td><td>{{ s.age }}</td><td>{{ s.gender }}</td><td>{{ s.department }}</td><td>{{ s.marks }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}<div class="msg info">No matching students.</div>{% endif %}
+{% endif %}
+{% endblock %}

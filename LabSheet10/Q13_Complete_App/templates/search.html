@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block cls %}wide{% endblock %}
+{% block content %}
+<h2>Search Medicine</h2>
+<form method="post">
+  <label>Enter Medicine ID or Medicine Name</label>
+  <input type="text" name="term" value="{{ term }}" placeholder="e.g. 301 or Paracetamol" required>
+  <button type="submit">Search</button>
+</form>
+{% if searched %}
+  {% if results %}
+  <div class="msg success">{{ results|length }} medicine(s) found.</div>
+  {% for m in results %}
+  <div class="card">
+    <p><b>Medicine ID:</b> {{ m.medicine_id }}</p>
+    <p><b>Name:</b> {{ m.name }}</p>
+    <p><b>Category:</b> {{ m.category }}</p>
+    <p><b>Price:</b> &#8377;{{ m.price }}</p>
+    <p><b>Stock:</b> {{ m.stock }}</p>
+    <p><b>Manufacturer:</b> {{ m.manufacturer }}</p>
+  </div>
+  {% endfor %}
+  {% else %}
+  <div class="msg error">No medicine found for "{{ term }}".</div>
+  {% endif %}
+{% endif %}
+{% endblock %}

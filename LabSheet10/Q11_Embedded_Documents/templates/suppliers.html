@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block cls %}wide{% endblock %}
+{% block content %}
+<h2>{{ title }}</h2>
+<form action="/city" method="get" class="inline-form">
+  <label>Filter by supplier city</label>
+  <input type="text" name="city" placeholder="e.g. Roorkee" required>
+  <button type="submit" class="btn-sm">Filter</button>
+  <a class="btn btn-sm" href="/">Show all</a>
+</form>
+{% if medicines %}
+<table>
+  <tr><th>ID</th><th>Medicine</th><th>Category</th><th>Price (&#8377;)</th><th>Stock</th><th>Manufacturer</th>
+      <th>Supplier Name</th><th>Phone</th><th>City</th></tr>
+  {% for m in medicines %}
+  <tr>
+    <td>{{ m.medicine_id }}</td><td>{{ m.name }}</td><td>{{ m.category }}</td><td>{{ m.price }}</td><td>{{ m.stock }}</td><td>{{ m.manufacturer }}</td>
+    <td>{{ m.supplier.name }}</td><td>{{ m.supplier.phone }}</td><td>{{ m.supplier.city }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}<div class="msg info">No medicines found. Run Q11_insert_with_supplier.py first.</div>{% endif %}
+{% endblock %}

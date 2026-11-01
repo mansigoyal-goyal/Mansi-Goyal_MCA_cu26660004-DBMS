@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Home</h2>
+<div class="msg info">Connected to MongoDB &mdash; CollegeDB.students has <b>{{ total }}</b> records.</div>
+<div class="grid">
+  <a href="/add">Add Student</a><a href="/students">View Students</a>
+  <a href="/search">Search Student</a><a href="/update">Update Student</a>
+  <a href="/delete">Delete Student</a><a href="/filter">Filter Students</a>
+</div>
+{% endblock %}

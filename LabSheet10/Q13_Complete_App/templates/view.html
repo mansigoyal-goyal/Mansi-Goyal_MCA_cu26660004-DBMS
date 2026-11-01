@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block cls %}wide{% endblock %}
+{% block content %}
+<h2>All Medicines ({{ medicines|length }})</h2>
+<div class="pills">
+  <a href="/medicines">All</a>
+  {% for c in categories %}<a href="/medicines?category={{ c }}">{{ c }}</a>{% endfor %}
+</div>
+<div class="pills">
+  <a href="/medicines?sort=price&order=asc&category={{ selected }}">Price &uarr;</a>
+  <a href="/medicines?sort=price&order=desc&category={{ selected }}">Price &darr;</a>
+  <a href="/medicines?sort=stock&order=asc&category={{ selected }}">Stock &uarr;</a>
+  <a href="/medicines?sort=stock&order=desc&category={{ selected }}">Stock &darr;</a>
+</div>
+{% if medicines %}
+<table>
+  <tr><th>Medicine ID</th><th>Medicine Name</th><th>Category</th><th>Price (&#8377;)</th><th>Stock</th><th>Manufacturer</th><th>Supplier</th></tr>
+  {% for m in medicines %}
+  <tr {% if m.stock < limit %}class="low"{% endif %}>
+    <td>{{ m.medicine_id }}</td><td>{{ m.name }}</td><td>{{ m.category }}</td><td>{{ m.price }}</td>
+    <td>{{ m.stock }} {% if m.stock < limit %}<span class="badge-low">LOW</span>{% endif %}</td>
+    <td>{{ m.manufacturer }}</td>
+    <td>{% if m.supplier %}{{ m.supplier.name }} ({{ m.supplier.city }}, {{ m.supplier.phone }}){% else %}-{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}<div class="msg info">No medicine records found.</div>{% endif %}
+{% endblock %}

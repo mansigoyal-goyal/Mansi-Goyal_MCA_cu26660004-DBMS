@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block cls %}wide{% endblock %}
+{% block content %}
+<h2>Low Stock Medicines (stock &lt; {{ limit }})</h2>
+<form method="get" class="inline-form">
+  <label>Low stock limit</label>
+  <input type="number" name="limit" value="{{ limit }}" min="1">
+  <button type="submit" class="btn-sm">Apply</button>
+</form>
+{% if medicines %}
+<div class="msg error">{{ medicines|length }} medicine(s) need restocking.</div>
+<table>
+  <tr><th>Medicine ID</th><th>Name</th><th>Category</th><th>Price (&#8377;)</th><th>Stock</th><th>Manufacturer</th></tr>
+  {% for m in medicines %}
+  <tr class="low"><td>{{ m.medicine_id }}</td><td>{{ m.name }}</td><td>{{ m.category }}</td><td>{{ m.price }}</td><td>{{ m.stock }} <span class="badge-low">LOW</span></td><td>{{ m.manufacturer }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}<div class="msg success">All medicines are sufficiently stocked.</div>{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add Medicine</h2>
+{% if msg %}<div class="msg {{ 'success' if ok else 'error' }}">{{ msg }}</div>{% endif %}
+<form method="post">
+  <label>Medicine ID</label><input type="number" name="medicine_id" required>
+  <label>Medicine Name</label><input type="text" name="name" required>
+  <label>Category</label><input type="text" name="category" required>
+  <label>Price (&#8377;)</label><input type="number" name="price" min="0" step="0.01" required>
+  <label>Stock</label><input type="number" name="stock" min="0" required>
+  <label>Manufacturer</label><input type="text" name="manufacturer" required>
+  <h3>Supplier (optional - stored as embedded document)</h3>
+  <label>Supplier Name</label><input type="text" name="supplier_name">
+  <label>Supplier Phone</label><input type="text" name="supplier_phone">
+  <label>Supplier City</label><input type="text" name="supplier_city">
+  <button type="submit">Submit</button>
+</form>
+{% endblock %}

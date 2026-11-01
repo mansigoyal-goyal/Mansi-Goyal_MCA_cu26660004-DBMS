@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Update Student - {{ student.student_id }}</h2>
+{% if msg %}<div class="msg success">{{ msg }}</div>{% endif %}
+<form action="/update/save" method="post">
+  <input type="hidden" name="student_id" value="{{ student.student_id }}">
+  <label>Name</label><input type="text" name="name" value="{{ student.name }}" required>
+  <label>Age</label><input type="number" name="age" value="{{ student.age }}" required>
+  <label>Department</label><input type="text" name="department" value="{{ student.department }}" required>
+  <label>Marks</label><input type="number" name="marks" value="{{ student.marks }}" step="0.01" required>
+  <button type="submit">Update</button>
+</form>
+<div class="card"><b>Current document in MongoDB:</b><br>{{ student }}</div>
+<p><a href="/update">&larr; Update another student</a></p>
+{% endblock %}

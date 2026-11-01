@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- Q2: Medicine entry form (HTML)   |   Q3: styled by style.css -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Medicine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><h1>Hospital Medicine Management System</h1></header>
+  <nav>
+    <a href="#">Home</a><a href="#">Add Medicine</a><a href="#">View Medicines</a><a href="#">Search Medicine</a>
+    <a href="#">Update Stock</a><a href="#">Delete Medicine</a><a href="#">Low Stock</a><a href="#">Inventory Report</a>
+  </nav>
+
+  <div class="container">
+    <h2>Medicine Entry Form</h2>
+    <form action="#" method="post">
+      <label for="medicine_id">Medicine ID</label>
+      <input type="number" id="medicine_id" name="medicine_id" placeholder="e.g. 309" required>
+
+      <label for="name">Medicine Name</label>
+      <input type="text" id="name" name="name" placeholder="e.g. Paracetamol" required>
+
+      <label for="category">Category</label>
+      <input type="text" id="category" name="category" placeholder="e.g. Analgesic" required>
+
+      <label for="price">Price (&#8377;)</label>
+      <input type="number" id="price" name="price" min="0" step="0.01" required>
+
+      <label for="stock">Stock</label>
+      <input type="number" id="stock" name="stock" min="0" required>
+
+      <label for="manufacturer">Manufacturer</label>
+      <input type="text" id="manufacturer" name="manufacturer" placeholder="e.g. ABC Pharma" required>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

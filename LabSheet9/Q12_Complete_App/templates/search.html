@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search Student</h2>
+<form method="post">
+  <label>Enter Student ID</label>
+  <input type="text" name="student_id" value="{{ sid }}" placeholder="e.g. S101" required>
+  <button type="submit">Search</button>
+</form>
+{% if searched %}
+  {% if student %}
+  <div class="card">
+    <p><b>Student ID:</b> {{ student.student_id }}</p>
+    <p><b>Name:</b> {{ student.name }}</p>
+    <p><b>Age:</b> {{ student.age }}</p>
+    <p><b>Gender:</b> {{ student.gender }}</p>
+    <p><b>Department:</b> {{ student.department }}</p>
+    <p><b>Marks:</b> {{ student.marks }}</p>
+  </div>
+  {% else %}
+  <div class="msg error">No student found with ID "{{ sid }}".</div>
+  {% endif %}
+{% endif %}
+{% endblock %}
